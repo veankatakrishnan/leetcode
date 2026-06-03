@@ -12,10 +12,10 @@ class Solution {
             else if(nums[m] == 1){
                 m++;
             }
-            else{
-                int temp = nums[h];
-                nums[h] = nums[m];
-                nums[m] = temp;
+            else if(nums[m] == 2){
+                int temp = nums[m];
+                nums[m] = nums[h];
+                nums[h] = temp;
                 h--;
             }
         }
