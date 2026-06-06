@@ -1,1 +1,1 @@
-<h2>left-and-right-sum-differences Notes</h2><hr>[ Time taken: 15m 5s ]
+<h2>left-and-right-sum-differences Notes</h2><hr>[ Time taken: 2m 24s ]
