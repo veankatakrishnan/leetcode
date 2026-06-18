@@ -3,37 +3,34 @@ class Solution {
         int totalCells = rows * cols;
         int result[][] = new int[totalCells][2];
         result[0] = new int[] {rStart, cStart};
-        if(totalCells == 1){
-            return result;
-        }
+        if(totalCells == 1) return result;
 
-        int currentRow = rStart;
-        int currentCol = cStart;
+        int currRow = rStart;
+        int currCol = cStart;
         int index = 1;
 
-        for(int stepSize = 1;; stepSize += 2){
-            int [][] directions = {
+        for(int stepSize = 1 ;; stepSize += 2){
+            int[][] directions = {
                 {0, 1, stepSize},
                 {1, 0, stepSize},
                 {0, -1, stepSize + 1},
                 {-1, 0, stepSize + 1}
             };
-            for(int[] direction: directions){
-                int rowDif = direction[0];
-                int colDif = direction[1];
-                int steps =  direction[2];
+            for(int[] direction : directions){
+                int rowDiff = direction[0];
+                int colDiff = direction[1];
+                int step = direction[2];
+                while(step > 0){
+                    currRow += rowDiff;
+                    currCol += colDiff;
 
-                while(steps > 0){
-                    currentRow += rowDif;
-                    currentCol += colDif;
-                    
-                    if((currentRow >= 0 && currentRow < rows) && (currentCol >= 0 && currentCol < cols)){
-                        result[index] = new int[] {currentRow, currentCol};
+                    if(currRow >= 0 && currRow < rows && currCol >= 0 && currCol < cols){
+                        result[index] = new int[] {currRow, currCol};
                         index++;
 
                         if(index == totalCells) return result;
                     }
-                    steps--;                    
+                    step--;
                 }
             }
         }
