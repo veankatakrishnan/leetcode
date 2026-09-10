@@ -2,22 +2,19 @@ class Solution {
     public boolean lemonadeChange(int[] bills) {
         int fives = 0;
         int tens = 0;
-        int twenties = 0;
 
-        for(int bill : bills){
-            if(bill == 5){
+        for(int i = 0; i < bills.length; i++){
+            if(bills[i] == 5){
                 fives++;
             }
-            else if(bill == 10){
+            else if(bills[i] == 10){
                 if(fives != 0){
-                    fives--;
                     tens++;
+                    fives--;
                 }
-                else{
-                    return false;
-                }
+                else return false;
             }
-            else if(bill == 20){
+            else{
                 if(fives != 0 && tens != 0){
                     fives--;
                     tens--;
