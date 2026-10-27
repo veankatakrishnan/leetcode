@@ -1,29 +1,31 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> answer = new ArrayList<>();
+        if(nums.length < 3) return answer;
         Arrays.sort(nums);
-        List<List<Integer>> three = new ArrayList<>();
-        for(int i = 0; i < nums.length - 2 && nums[i] <= 0; i++){
+        for(int i = 0; i < nums.length - 2; i++){
             if(i > 0 && nums[i] == nums[i - 1]) continue;
-            int l = i + 1;
-            int r = nums.length - 1;
-            while(l < r){
-                int sum = nums[i] + nums[l] + nums[r];
-                if(sum == 0){
-                    three.add(List.of(nums[i], nums[l], nums[r]));
-                    l++;
-                    r--;
+            int left = i + 1;
+            int right = nums.length - 1;
 
-                    while(l < r && nums[l] == nums[l - 1]) l++;
-                    while(l < r && nums[r] == nums[r + 1]) r--;
+            while(left < right){
+                int sum = nums[left] + nums[right] + nums[i];
+                if(sum == 0){
+                    List<Integer> temp = new ArrayList<>();
+                    temp.add(nums[i]);
+                    temp.add(nums[left]);
+                    temp.add(nums[right]);
+                    answer.add(temp);
+                    left++;
+                    right--;
+
+                    while(left < right && nums[left] == nums[left - 1]) left++;
+                    while(left < right && nums[right] == nums[right + 1]) right--;
                 }
-                else if(sum < 0){
-                    l++;
-                }
-                else{
-                    r--;
-                }
+                else if(sum < 0) left++;
+                else right--;
             }
         }
-        return three;
+        return answer;
     }
 }
